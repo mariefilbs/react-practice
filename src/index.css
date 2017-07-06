@@ -1,0 +1,19 @@
+body {
+  margin: 5%;
+  padding: 5%;
+  font-family: sans-serif;
+  /*border: 1px solid black;*/
+}
+
+.the-list {
+  list-style: none;
+  padding-left: 0;
+  width: 255px;
+}
+
+.the-list li {
+  background-color: lightgrey;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
