@@ -2,7 +2,12 @@ body {
   margin: 5%;
   padding: 5%;
   font-family: sans-serif;
+  width: 250px;
   /*border: 1px solid black;*/
+}
+
+input {
+  box-shadow: none;
 }
 
 .the-list {
@@ -16,4 +21,17 @@ body {
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 5px;
+  text-align: center;
+}
+
+.add-button {
+  float: right;
+}
+
+.remove-button {
+  float: right;
+}
+
+.checkbox {
+  float: left;
 }

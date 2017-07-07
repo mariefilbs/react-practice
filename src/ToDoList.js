@@ -7,32 +7,36 @@ class ToDoList extends React.Component {
     super(props);
     this.state = {
       items: [],
-      newItem: ''
+      newItem: '',
+      isCompleted: false,
+      isEditing: false
     };
 
     this.addItem = this.addItem.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    // this.toggleEdit = this.toggleEdit.bind(this);
+    // this.deleteItem = this.deleteItem.bind(this);
   }
 
   handleChange (event) {
-    this.setState({ newItem: event.target.value })
-    console.log(this.state)
+    this.setState({
+      newItem: event.target.value
+    })
   }
 
   addItem (event) {
+    event.preventDefault();
     let itemArray = this.state.items;
-    console.log(this.state)
-    //add inputElement from <form>
+    //console.log(this.state)
+
     itemArray.push (
       {
         text: this.state.newItem,
         key: Date.now()
       }
     )
-
     this.setState({ itemArray })
-    //override the broswer default of onSubmit
-    event.preventDefault();
+    this.state.newItem = '';
   }
 
  render () {
@@ -40,9 +44,9 @@ class ToDoList extends React.Component {
       <div>
         <form onSubmit={this.addItem}>
           <input type="text" onChange={this.handleChange} value={this.state.newItem} placeholder="Add a task.."/>
-          <button type="submit">Add</button>
+          <button type="submit" className="add-button">Add</button>
         </form>
-        <ToDoItems entries={this.state.items} />
+        <ToDoItems entries={this.state.items} completed={this.state.isCompleted} remove={this.removeItem}/>
       </div>
    );
  }

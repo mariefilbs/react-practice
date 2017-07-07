@@ -2,29 +2,35 @@ import React, { Component } from 'react';
 import './App.css';
 
 
-class ToDoItems extends Component {
-  render() {
-    //create a new variable to store our passed array of taasks
-    let todoEntries = this.props.entries;
+class ToDoItems extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = this.state;
+    this.removeItem = this.removeItem.bind(this);
+    //console.log(this)
+    this.createTask = this.createTask.bind(this);
+  }
 
-    this.handleRemove = this.handleRemove.bind(this);
-
-    handleRemove (key) {
-      this.setState({ todoEntries: this.state.todoEntries.filter((i, rkey) => key !== rkey)});
+    removeItem () {
+      console.log('clicked')
     }
-    //create the HTML element to display data
-    function createTasks (item) {
+
+    createTask (item) {
       console.log(item)
       return (
-        <div>
-          <li key={item.key}>{item.text}</li>
-          <button type="button" onClick={this.handleRemove(item.key)}>x</button>
-        </div>
+          <li key={item.key}>
+            <input type="checkbox" className="checkbox"/>
+            {item.text}
+            <button type="button" className="remove-button" onClick={this.removeItem}>x</button>
+          </li>
+
      )
     }
 
-    let listItems = todoEntries.map(createTasks);
-    console.log(listItems)
+  render() {
+    let todoEntries = this.props.entries;
+    let completedTask = this.props.completed;
+    let listItems = todoEntries.map(this.createTask);
 
     return (
       //the list
@@ -32,6 +38,5 @@ class ToDoItems extends Component {
     );
   }
 }
-
 
 export default ToDoItems;
